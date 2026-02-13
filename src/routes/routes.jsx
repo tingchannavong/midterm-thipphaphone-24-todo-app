@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router";
 import MainLayout from "../layouts/MainLayout";
 import Login from "../pages/Login";
-
+import TodoList from "../pages/TodoList";
 
 const routes = createBrowserRouter([
     {
@@ -11,7 +11,11 @@ const routes = createBrowserRouter([
             {
                 path: 'login',
                 element: <Login />
-            }
+            },
+            {
+                path: 'my-todo',
+                element: <TodoList/>
+            },
         ]
     }
 
