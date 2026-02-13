@@ -1,6 +1,31 @@
-import React from 'react'
+import axios from 'axios'
+import { useEffect, useState } from 'react'
+import TodoItem from '../components/TodoItem';
 
 function TodoList() {
+    const [todoItems, setTodoItems] = useState([]);
+
+    useEffect(() => {
+    const id = 24; // to grab from zustand
+    const TODO_API = `https://drive-accessible-pictures-send.trycloudflare.com/todos/${id}`;
+
+    const fetchUserTodo = async () => {
+        // do error handling later
+        try {
+            const res = await axios.get(TODO_API);
+            // console.log(res);
+            // console.log(res.data);
+
+             if (res.status === 200) {
+                setTodoItems(res.data)  
+             }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    fetchUserTodo();
+    }, [])
+
   return (
 
     <div className="login-box mx-auto mt-25 p-5 w-xl h-auto bg-[#202936] text-xl rounded-md">
@@ -13,10 +38,8 @@ function TodoList() {
                 Add</button>
         </form>
         <section className="edit-block">
-
+            {todoItems.map( obj => <TodoItem key={obj.id} data={obj}/>)}
         </section>
-        {/* create block */}
-        {/* fetch block */}
     </div>
 
   )
