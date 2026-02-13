@@ -11,7 +11,7 @@ function TodoItem({data, hdlDelete, hdlIsDone, arrayIndex}) {
             checked={data.isdone}
             onChange={() => hdlIsDone(data.id, arrayIndex)}
             />
-            <p className="">{data.content}</p>
+            <p className={ data.isdone ? "line-through" : ""}>{data.content}</p>
         </div>
         <div className={lineBlockStyles}>
             <button className="rounded-md bg-gray-400 p-1 w-20 hover:bg-purple-300">
