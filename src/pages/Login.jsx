@@ -1,8 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import useUserStores from "../stores/todoStores";
 
 function Login() {
+
+const setUser = useUserStores((state) => state.setUser);
 
 const [loginData, setLoginData] = useState({
     username: "",
@@ -21,13 +24,14 @@ const hdlSubmit = async (e) => {
 
     // validate later
 
-    // login via post
-    // hdle login error with try catch
+    // login via post to hdl login error with try catch
     try {
         const LOGIN_API = 'https://drive-accessible-pictures-send.trycloudflare.com/auth/login';
         const res = await axios.post(LOGIN_API, loginData);
-        console.log(res.data);
+        console.log(res.data.user);
         if (res.status === 200) {
+            // store user data ID, token etc.
+            setUser(res.data.user);
             navigate('/my-todo');
         }
     } catch (error) {
