@@ -9,7 +9,7 @@ const routes = createBrowserRouter([
         element: <MainLayout />,
         children: [
             {
-                path: 'login',
+                path: '/',
                 element: <Login />
             },
             {
