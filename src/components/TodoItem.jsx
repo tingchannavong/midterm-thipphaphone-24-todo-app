@@ -1,11 +1,16 @@
 
-function TodoItem({data, hdlDelete}) {
+function TodoItem({data, hdlDelete, hdlIsDone, arrayIndex}) {
+    // console.log(data);
 
     const lineBlockStyles ="flex gap-5"
   return (
     <section className="todo-line flex justify-between py-3 text-gray-50">
         <div className={lineBlockStyles}>
-            <input type="checkbox" />
+            <input type="checkbox" 
+            name="isdone"
+            checked={data.isdone}
+            onChange={() => hdlIsDone(data.id, arrayIndex)}
+            />
             <p className="">{data.content}</p>
         </div>
         <div className={lineBlockStyles}>
